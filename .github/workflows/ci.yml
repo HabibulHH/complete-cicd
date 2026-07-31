@@ -17,8 +17,11 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y sshpass
 
       - name: Copy files to server
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
         run: |
-          sshpass -p 'lalaland44' ssh -o StrictHostKeyChecking=no \
-            root@174.138.30.84 'mkdir -p /root/app'
-          sshpass -p 'lalaland44' scp -o StrictHostKeyChecking=no -r ./* \
-            root@174.138.30.84:/root/app
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no \
+            root@"$SSH_HOST" 'mkdir -p /root/app'
+          sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r ./* \
+            root@"$SSH_HOST":/root/app
