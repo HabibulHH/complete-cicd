@@ -14,8 +14,11 @@ app.get('/health', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server siam listening on port ${PORT}`);
-});
+// Only start the server when run directly, so tests can import the app.
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server siam listening on port ${PORT}`);
+  });
+}
 
 module.exports = app;
