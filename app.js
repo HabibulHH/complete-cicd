@@ -8,7 +8,7 @@ app.use(logger);
 
 app.get('/health', (req, res) => {
   res.status(200).json({
-    status: 'ok it is',
+    status: 'ok it isasds',
     uptime: process.uptime(),
     timestamp: new Date().toISOString(),
   });
