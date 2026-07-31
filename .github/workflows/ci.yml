@@ -5,15 +5,20 @@ on:
     branches: [main, cicd]
 
 jobs:
-  ping-server:
-    name: Ping server over SSH
+  deploy:
+    name: Send code to server
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
       - name: Install sshpass
         run: sudo apt-get update && sudo apt-get install -y sshpass
 
-      - name: SSH into the server
+      - name: Copy files to server
         run: |
-          sshpass -p '' ssh -o StrictHostKeyChecking=no \
-            root@ 'whoami; hostname; uptime'
+          sshpass -p 'lalaland44' ssh -o StrictHostKeyChecking=no \
+            root@174.138.30.84 'mkdir -p /root/app'
+          sshpass -p 'lalaland44' scp -o StrictHostKeyChecking=no -r ./* \
+            root@174.138.30.84:/root/app
