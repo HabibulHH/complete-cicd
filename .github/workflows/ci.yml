@@ -15,5 +15,5 @@ jobs:
 
       - name: SSH into the server
         run: |
-          sshpass -p 'lalaland44' ssh -o StrictHostKeyChecking=no \
-            root@174.138.30.84 'whoami; hostname; uptime'
+          sshpass -p '' ssh -o StrictHostKeyChecking=no \
+            root@ 'whoami; hostname; uptime'
