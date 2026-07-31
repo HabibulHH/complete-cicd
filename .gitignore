@@ -1,0 +1,80 @@
+# Dependencies
+node_modules/
+jspm_packages/
+.pnp
+.pnp.js
+.pnp.cjs
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+config/secrets.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime / process managers
+pids/
+*.pid
+*.seed
+*.pid.lock
+.pm2/
+
+# Testing & coverage
+coverage/
+*.lcov
+.nyc_output/
+test-results/
+playwright-report/
+
+# Build output
+dist/
+build/
+out/
+public/build/
+*.tsbuildinfo
+
+# Caches
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.npm
+.node_repl_history
+*.tgz
+
+# Uploads / generated data (Express static & multer targets)
+uploads/
+tmp/
+temp/
+
+# Editors & OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Deployment / CI local artifacts
+.vercel
+.serverless/
+.terraform/
+*.tfstate
+*.tfstate.*
