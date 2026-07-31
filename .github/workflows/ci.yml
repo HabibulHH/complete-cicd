@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main, cicd]
+
+jobs:
+  deploy:
+    name: Send code to server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Copy files to server
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+        run: |
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no \
+            root@"$SSH_HOST" 'mkdir -p /root/app'
+          sshpass -p "$SSH_PASSWORD" scp -o StrictHostKeyChecking=no -r ./* \
+            root@"$SSH_HOST":/root/app
