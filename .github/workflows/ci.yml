@@ -1,0 +1,15 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  greet:
+    name: Say my name
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print my name
+        shell: sh
+        run: echo "Habibul Hasan Hira"
