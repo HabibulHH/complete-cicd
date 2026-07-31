@@ -2,14 +2,23 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, cicd]
 
 jobs:
-  greet:
-    name: Say my name
+  deploy:
+    name: Send code to server
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print my name
-        shell: sh
-        run: echo "Habibul Hasan Hira"
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Copy files to server
+        run: |
+          sshpass -p 'lalaland44' ssh -o StrictHostKeyChecking=no \
+            root@174.138.30.84 'mkdir -p /root/app'
+          sshpass -p 'lalaland44' scp -o StrictHostKeyChecking=no -r ./* \
+            root@174.138.30.84:/root/app
